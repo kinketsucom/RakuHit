@@ -34,7 +34,8 @@ namespace RakuHit {
             param.Clear();
             param.Add("page", "1");
             param.Add("query", query);
-            param.Add("sort", "relevance");
+            param.Add("sort", "item_id");
+            param.Add("order", "desc");
             resp_format = api.SearchItemWithCondition(param);
             progressBar.Value = 50;
             count_dic = api.CountResponseByBrandName(resp_format,(int)this.numericUpDown1.Value,this.checkBox1.Checked);

@@ -5,6 +5,15 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace RakuHit.Rakuma {
+
+    //sortについて
+    //relevance:おすすめ順
+    //item_id:新しい順 
+    //さらにorder desc 新しい順 order ascをつけると古い順
+    //sell_price:価格順
+    //さらにorder asc 安い順 order desc 高い順
+    //like_count
+    //さらにorder desc
     public class ResponseFormat {
         public bool result = false;
         public List<Items> items = new List<Items>();
