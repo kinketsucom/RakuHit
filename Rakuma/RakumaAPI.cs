@@ -69,7 +69,7 @@ namespace RakuHit.Rakuma {
                 #endregion
                 #region 2週目以降の取得
 
-                while (item_count < 1000 && resp_format.paging.has_next) {
+                while (item_count < 400 && resp_format.paging.has_next) {
                     param["page"] = resp_format.paging.next_page.ToString();
                     rawres = getRakumaAPI(url, param, this.cc);
                     if (rawres.error) throw new Exception("ネットワークエラーが発生しています。レスポンスが取得できません");
@@ -117,24 +117,48 @@ namespace RakuHit.Rakuma {
             }catch(Exception ex) {
                 Console.WriteLine(ex);
                 return new ResponseFormat();
-
             }
         }
+
         //レスポンスを解析する
-        public bool CountResponseByBrandName(ResponseFormat resp_format) {
+        public Dictionary<string,int> CountResponseByBrandName(ResponseFormat resp_format,int remove_rate,bool remove_nodata) {
             Dictionary<string, int> dic = new Dictionary<string, int>();
-            dic["null"] = 0;
+            dic["未指定"] = 0;
             foreach(var val in resp_format.items) {
                 if (string.IsNullOrEmpty(val.brand_name)) {//ブランドがnull
-
+                    dic["未指定"] += 1;
                 } else {
-
+                    if (dic.ContainsKey(val.brand_name)) {//ブランドが既に辞書にある時
+                        dic[val.brand_name] += 1;
+                    } else {
+                        dic.Add(val.brand_name, 1);
+                    }
                 }
-
             }
-
-
-            return true;
+            double del_item_count = 0;
+            //未指定を除去する設定
+            if (remove_nodata) {//FIXME:条件分岐
+                del_item_count = -dic["未指定"];
+                dic.Remove("未指定");
+            }
+            //20%に満たないと除去する設定
+            if (true) {//FIXME:ここは削除設定のon,off分岐
+                List<string> del_list = new List<string>();
+                del_item_count += resp_format.items.Count;
+                del_item_count *= (double)remove_rate / 100.0;//これ以下のvalue値を持つものを削除
+                foreach(var val in dic) {
+                    if (val.Value < del_item_count) {
+                        del_list.Add(val.Key);
+                    }
+                }
+                foreach(var val in del_list) {
+                    dic.Remove(val);
+                }
+            }
+            foreach(var val in dic) {
+                Console.WriteLine(val.Key + ":" + val.Value.ToString());
+            }
+            return dic;
         }
 
 
