@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Codeplex.Data;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -13,7 +14,132 @@ namespace RakuHit.Rakuma {
         private string proxy;
         private const string XPLATFORM = "android";
         private const string XAPPVERSION = "600";
+        public CookieContainer cc = new CookieContainer();
+        
+        
 
+
+
+
+        //レスポンスを1000件まで取得する
+        public ResponseFormat SearchItemWithCondition(Dictionary<string,string> param) {
+            try {
+                ResponseFormat resp_format = new ResponseFormat();
+
+                #region 一回目の取得
+                string url = "https://api.fril.jp/api/v3/items/search/open";
+                RakumaRawResponse rawres = getRakumaAPI(url, param, this.cc);
+                if (rawres.error) throw new Exception("ネットワークエラーが発生しています。レスポンスが取得できません。");
+                dynamic resjson = DynamicJson.Parse(rawres.response);
+                resp_format.result = resjson.result;
+                int item_count = -1;
+                foreach (var val in resjson.items) {
+                    resp_format.items.Add(new Items());
+                    item_count += 1;
+                    resp_format.items[item_count].tl_id = val.tl_id;
+                    resp_format.items[item_count].item_id = val.item_id;
+                    resp_format.items[item_count].img_id = val.img_id;
+                    resp_format.items[item_count].img_date = val.img_date;
+                    resp_format.items[item_count].img_url = val.img_url;
+                    resp_format.items[item_count].item_name = val.item_name;
+                    resp_format.items[item_count].item_detail = val.item_detail;
+                    resp_format.items[item_count].price = val.price;
+                    resp_format.items[item_count].t_status = val.t_status;
+                    resp_format.items[item_count].user_id = val.user_id;
+                    resp_format.items[item_count].pc_url = val.pc_url;
+                    resp_format.items[item_count].brand_id = val.brand_id;
+                    if (!string.IsNullOrEmpty(val.brand_name)) resp_format.items[item_count].brand_name = val.brand_name;
+                    resp_format.items[item_count].i_brand_id = val.i_brand_id;
+                    if (!string.IsNullOrEmpty(val.i_brand_name)) resp_format.items[item_count].i_brand_name = val.i_brand_name;
+                    resp_format.items[item_count].screen_name = val.screen_name;
+                    if (!string.IsNullOrEmpty(val.profile_img_url)) resp_format.items[item_count].profile_img_url = val.profile_img_url;
+                    resp_format.items[item_count].liked = val.liked;
+                    resp_format.items[item_count].created_at = val.created_at;
+                    resp_format.items[item_count].like_count = val.like_count;
+                    resp_format.items[item_count].comment_count = val.comment_count;
+                    resp_format.items[item_count].liked_user_name = val.liked_user_name;
+                    resp_format.items[item_count].liked_at = val.liked_at;
+                    resp_format.items[item_count].discount_rate = val.discount_rate;
+                }
+                resp_format.hit_count = resjson.hit_count;
+                resp_format.per_page = resjson.per_page;
+                //resp_format.banner = resjson.banner;FIXME:挙動不明
+                resp_format.paging.has_next = resjson.paging.has_next;
+                resp_format.paging.next_page = resjson.paging.next_page;
+                #endregion
+                #region 2週目以降の取得
+
+                while (item_count < 1000 && resp_format.paging.has_next) {
+                    param["page"] = resp_format.paging.next_page.ToString();
+                    rawres = getRakumaAPI(url, param, this.cc);
+                    if (rawres.error) throw new Exception("ネットワークエラーが発生しています。レスポンスが取得できません");
+                    resjson = DynamicJson.Parse(rawres.response);
+                    resp_format.result = resjson.result;
+                    foreach (var val in resjson.items) {
+                        resp_format.items.Add(new Items());
+                        item_count += 1;
+                        resp_format.items[item_count].tl_id = val.tl_id;
+                        resp_format.items[item_count].item_id = val.item_id;
+                        resp_format.items[item_count].img_id = val.img_id;
+                        resp_format.items[item_count].img_date = val.img_date;
+                        resp_format.items[item_count].img_url = val.img_url;
+                        resp_format.items[item_count].item_name = val.item_name;
+                        resp_format.items[item_count].item_detail = val.item_detail;
+                        resp_format.items[item_count].price = val.price;
+                        resp_format.items[item_count].t_status = val.t_status;
+                        resp_format.items[item_count].user_id = val.user_id;
+                        resp_format.items[item_count].pc_url = val.pc_url;
+                        resp_format.items[item_count].brand_id = val.brand_id;
+                        if (!string.IsNullOrEmpty(val.brand_name)) resp_format.items[item_count].brand_name = val.brand_name;
+                        resp_format.items[item_count].i_brand_id = val.i_brand_id;
+                        if (!string.IsNullOrEmpty(val.i_brand_name)) resp_format.items[item_count].i_brand_name = val.i_brand_name;
+                        resp_format.items[item_count].screen_name = val.screen_name;
+                        if (!string.IsNullOrEmpty(val.profile_img_url)) resp_format.items[item_count].profile_img_url = val.profile_img_url;
+                        resp_format.items[item_count].liked = val.liked;
+                        resp_format.items[item_count].created_at = val.created_at;
+                        resp_format.items[item_count].like_count = val.like_count;
+                        resp_format.items[item_count].comment_count = val.comment_count;
+                        resp_format.items[item_count].liked_user_name = val.liked_user_name;
+                        resp_format.items[item_count].liked_at = val.liked_at;
+                        resp_format.items[item_count].discount_rate = val.discount_rate;
+                    }
+                    resp_format.hit_count = resjson.hit_count;
+                    resp_format.per_page = resjson.per_page;
+                    //resp_format.banner = resjson.banner;FIXME:挙動不明
+                    resp_format.paging.has_next = resjson.paging.has_next;
+                    if (resp_format.paging.has_next == false) break;
+                    resp_format.paging.next_page = resjson.paging.next_page;
+                }
+
+                #endregion
+
+                return resp_format;
+            }catch(Exception ex) {
+                Console.WriteLine(ex);
+                return new ResponseFormat();
+
+            }
+        }
+        //レスポンスを解析する
+        public bool CountResponseByBrandName(ResponseFormat resp_format) {
+            Dictionary<string, int> dic = new Dictionary<string, int>();
+            dic["null"] = 0;
+            foreach(var val in resp_format.items) {
+                if (string.IsNullOrEmpty(val.brand_name)) {//ブランドがnull
+
+                } else {
+
+                }
+
+            }
+
+
+            return true;
+        }
+
+
+
+        #region APIリクエストテンプレート
         //GET,POSTのRequestのResponse
         private class RakumaRawResponse {
             public bool error = false;
@@ -22,10 +148,8 @@ namespace RakuHit.Rakuma {
             public RakumaRawResponse(string response, bool error = false) {
                 this.response = response; this.error = error;
             }
-
         }
-
-
+        //FrilAPIをPOSTでたたく
         private RakumaRawResponse getRakumaAPI(string url, Dictionary<string, string> param, CookieContainer cc, bool webmode = false) {
             System.Diagnostics.Stopwatch sw = new System.Diagnostics.Stopwatch();
             //ストップウォッチを開始する
@@ -80,12 +204,11 @@ namespace RakuHit.Rakuma {
                 StreamReader sr = new StreamReader(s);
                 string content = sr.ReadToEnd();
                 return new RakumaRawResponse(content, false);
-            } catch {
+            } catch(Exception ex) {
+                Console.WriteLine(ex);
                 return new RakumaRawResponse("", true);
             }
         }
-
-
         //FrilAPIをPOSTでたたく
         private RakumaRawResponse postFrilAPI(string url, Dictionary<string, string> param, CookieContainer cc, bool webmode = false) {
            RakumaRawResponse res = new RakumaRawResponse();
@@ -182,9 +305,6 @@ namespace RakuHit.Rakuma {
                 return new RakumaRawResponse("", true);
             }
         }
-
-
-
-
+        #endregion
     }
 }
