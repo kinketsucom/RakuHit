@@ -15,17 +15,19 @@ namespace RakuHit.Rakuma {
         private const string XPLATFORM = "android";
         private const string XAPPVERSION = "600";
         public CookieContainer cc = new CookieContainer();
-        
-        
+        public MainForm main_form;
+        public int progress_num;
+
+        public RakumaAPI(MainForm form) {
+            this.main_form = form;
+        }
 
 
-
-
-        //レスポンスを1000件まで取得する
+        //レスポンスを300件まで取得する
         public ResponseFormat SearchItemWithCondition(Dictionary<string,string> param) {
             try {
                 ResponseFormat resp_format = new ResponseFormat();
-
+                this.progress_num = 0;
                 #region 一回目の取得
                 string url = "https://api.fril.jp/api/v3/items/search/open";
                 RakumaRawResponse rawres = getRakumaAPI(url, param, this.cc);
@@ -67,8 +69,8 @@ namespace RakuHit.Rakuma {
                 resp_format.paging.has_next = resjson.paging.has_next;
                 resp_format.paging.next_page = resjson.paging.next_page;
                 #endregion
+                this.progress_num = (int)(item_count/resp_format.hit_count);
                 #region 2週目以降の取得
-
                 while (item_count < 400 && resp_format.paging.has_next) {
                     param["page"] = resp_format.paging.next_page.ToString();
                     rawres = getRakumaAPI(url, param, this.cc);
@@ -109,10 +111,10 @@ namespace RakuHit.Rakuma {
                     resp_format.paging.has_next = resjson.paging.has_next;
                     if (resp_format.paging.has_next == false) break;
                     resp_format.paging.next_page = resjson.paging.next_page;
+                    this.progress_num = (int)(item_count / resp_format.hit_count);
                 }
-
                 #endregion
-
+                this.progress_num = Math.Max((int)(item_count / resp_format.hit_count),80);
                 return resp_format;
             }catch(Exception ex) {
                 Console.WriteLine(ex);
@@ -155,9 +157,10 @@ namespace RakuHit.Rakuma {
                     dic.Remove(val);
                 }
             }
-            foreach(var val in dic) {
-                Console.WriteLine(val.Key + ":" + val.Value.ToString());
-            }
+            //foreach(var val in dic) {
+            //    Console.WriteLine(val.Key + ":" + val.Value.ToString());
+            //}
+            this.progress_num = 100;
             return dic;
         }
 

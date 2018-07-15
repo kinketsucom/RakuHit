@@ -34,7 +34,7 @@ namespace RakuHit.Rakuma {
         public string img_url;
         public string item_name;
         public string item_detail;
-        public double? price;
+        public double price;
         public double? t_status;
         public double? user_id;
         public string pc_url;
