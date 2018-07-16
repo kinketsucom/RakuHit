@@ -46,8 +46,8 @@ namespace RakuHit.Rakuma {
         public string profile_img_url;//null
         public bool liked;
         public string created_at;//null
-        public double? like_count;
-        public double? comment_count;
+        public double like_count;
+        public double comment_count;
         public string liked_user_name;
         public string liked_at;
         public string discount_rate;//null

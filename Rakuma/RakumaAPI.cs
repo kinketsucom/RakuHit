@@ -17,10 +17,8 @@ namespace RakuHit.Rakuma {
         public CookieContainer cc = new CookieContainer();
         public MainForm main_form;
         public int progress_num;
+        public int stop_num = 400;
 
-        public RakumaAPI(MainForm form) {
-            this.main_form = form;
-        }
 
 
         //レスポンスを300件まで取得する
@@ -69,9 +67,9 @@ namespace RakuHit.Rakuma {
                 resp_format.paging.has_next = resjson.paging.has_next;
                 resp_format.paging.next_page = resjson.paging.next_page;
                 #endregion
-                this.progress_num = (int)(item_count/resp_format.hit_count);
+                this.progress_num = (int)( item_count*100/Math.Min(stop_num,(int)resp_format.hit_count));
                 #region 2週目以降の取得
-                while (item_count < 400 && resp_format.paging.has_next) {
+                while (item_count < stop_num && resp_format.paging.has_next) {
                     param["page"] = resp_format.paging.next_page.ToString();
                     rawres = getRakumaAPI(url, param, this.cc);
                     if (rawres.error) throw new Exception("ネットワークエラーが発生しています。レスポンスが取得できません");
@@ -111,10 +109,10 @@ namespace RakuHit.Rakuma {
                     resp_format.paging.has_next = resjson.paging.has_next;
                     if (resp_format.paging.has_next == false) break;
                     resp_format.paging.next_page = resjson.paging.next_page;
-                    this.progress_num = (int)(item_count / resp_format.hit_count);
+                    this.progress_num = (int)((item_count*100 / Math.Min(stop_num, (int)resp_format.hit_count)));
                 }
                 #endregion
-                this.progress_num = Math.Max((int)(item_count / resp_format.hit_count),80);
+                this.progress_num = Math.Max((int)(item_count*100 / Math.Min(stop_num, (int)resp_format.hit_count)),80);
                 return resp_format;
             }catch(Exception ex) {
                 Console.WriteLine(ex);

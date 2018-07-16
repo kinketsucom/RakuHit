@@ -1,0 +1,10 @@
+C:\Users\sekib\Documents\Tasks\RakuHit\RakuHit\bin\Release\RakuHit.exe.config
+C:\Users\sekib\Documents\Tasks\RakuHit\RakuHit\bin\Release\RakuHit.exe
+C:\Users\sekib\Documents\Tasks\RakuHit\RakuHit\bin\Release\RakuHit.pdb
+C:\Users\sekib\Documents\Tasks\RakuHit\RakuHit\obj\Release\RakuHit.csprojResolveAssemblyReference.cache
+C:\Users\sekib\Documents\Tasks\RakuHit\RakuHit\obj\Release\RakuHit.MainForm.resources
+C:\Users\sekib\Documents\Tasks\RakuHit\RakuHit\obj\Release\RakuHit.Properties.Resources.resources
+C:\Users\sekib\Documents\Tasks\RakuHit\RakuHit\obj\Release\RakuHit.csproj.GenerateResource.cache
+C:\Users\sekib\Documents\Tasks\RakuHit\RakuHit\obj\Release\RakuHit.csproj.CoreCompileInputs.cache
+C:\Users\sekib\Documents\Tasks\RakuHit\RakuHit\obj\Release\RakuHit.exe
+C:\Users\sekib\Documents\Tasks\RakuHit\RakuHit\obj\Release\RakuHit.pdb
