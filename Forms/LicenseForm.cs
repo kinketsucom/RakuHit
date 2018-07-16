@@ -174,5 +174,13 @@ namespace RakuHit.Forms {
                 return false;
             }
         }
+
+        private void label1_MouseHover(object sender, EventArgs e) {
+            toolStripStatusLabel1.Text = "ライセンスのご質問はrakuland.dev@gmail.comまで";
+        }
+
+        private void label1_MouseLeave(object sender, EventArgs e) {
+            toolStripStatusLabel1.Text = "";
+        }
     }
 }

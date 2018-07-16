@@ -49,6 +49,7 @@ namespace RakuHit.Rakuma {
                     resp_format.items[item_count].pc_url = val.pc_url;
                     resp_format.items[item_count].brand_id = val.brand_id;
                     if (!string.IsNullOrEmpty(val.brand_name)) resp_format.items[item_count].brand_name = val.brand_name;
+                    else resp_format.items[item_count].brand_name = "未指定";
                     resp_format.items[item_count].i_brand_id = val.i_brand_id;
                     if (!string.IsNullOrEmpty(val.i_brand_name)) resp_format.items[item_count].i_brand_name = val.i_brand_name;
                     resp_format.items[item_count].screen_name = val.screen_name;

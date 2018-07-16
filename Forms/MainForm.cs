@@ -58,7 +58,7 @@ namespace RakuHit {
         }
 
         private async void button1_Click(object sender, EventArgs e) {
-            this.button1.Enabled = false;
+            EnableFalse();
             timer1.Enabled = true;
             string query = "";
             if (!string.IsNullOrEmpty(textBox1.Text)) query = textBox1.Text;
@@ -89,7 +89,7 @@ namespace RakuHit {
                 chart.Series[legend].Points.Add(dp);   //グラフにデータ追加
             }
             request_type = "ブランド名";
-            this.button1.Enabled = true;
+            EnableTrue();
             toolStripStatusLabel1.Text = "";
         }
 
@@ -131,6 +131,7 @@ namespace RakuHit {
                         double average_comment = 0;
                         int item_count = 0;
                         foreach(var val in resp_format.items) {
+
                             if (dp.AxisLabel == val.brand_name) {
                                 if (val.price > max_price) {
                                     max_price = val.price;
@@ -158,6 +159,7 @@ namespace RakuHit {
 
                                 item_count += 1;
                             }
+
                         }
                  
 
@@ -190,9 +192,16 @@ namespace RakuHit {
 
         private void StartAmazonButton_Click(object sender, EventArgs e) {
             string url = "https://www.amazon.co.jp/s?field-keywords=";
-            url += detail_query;
-            url += "&tag=2018result-22";
-            System.Diagnostics.Process.Start(url);
+            if (detail_query == "未指定") {
+                System.Diagnostics.Process.Start(url);
+            } else {
+                url += detail_query;
+                if (!string.IsNullOrEmpty(textBox1.Text)) {
+                    url += " " + textBox1.Text;
+                }
+                url += "&tag=2018result-22";
+                System.Diagnostics.Process.Start(url);
+            }
         }
 
         private void timer1_Tick(object sender, EventArgs e) {
@@ -245,7 +254,18 @@ namespace RakuHit {
         private void numericUpDown2_Leave(object sender, EventArgs e) {
             toolStripStatusLabel1.Text = "";
         }
-
+        private void EnableFalse() {
+            this.button1.Enabled = false;
+            this.numericUpDown1.Enabled = false;
+            this.numericUpDown2.Enabled = false;
+            this.checkBox1.Enabled = false;
+        }
+        private void EnableTrue() {
+            this.button1.Enabled = true;
+            this.numericUpDown1.Enabled = true;
+            this.numericUpDown2.Enabled = true;
+            this.checkBox1.Enabled = true;
+        }
 
         #region ライセンス関連
         public const string Key_LicenseKey = "LicenseKey";
