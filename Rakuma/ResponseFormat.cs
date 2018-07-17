@@ -36,7 +36,7 @@ namespace RakuHit.Rakuma {
         public string item_detail;
         public double price;
         public double? t_status;
-        public double? user_id;
+        public double user_id;
         public string pc_url;
         public double? brand_id;//null
         public string brand_name;//null
@@ -53,5 +53,13 @@ namespace RakuHit.Rakuma {
         public string discount_rate;//null
     }
 
+    //ユーザーページジャンプ用
+    public class SellUserData {
+        public double user_id;
+        public string screen_name;
+        public int item_count;//このユーザーが何個売ったか
+        public string pc_url;
+
+    }
 
 }

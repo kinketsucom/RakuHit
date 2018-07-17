@@ -21,6 +21,9 @@ namespace RakuHit {
         ResponseFormat resp_format = new ResponseFormat();
         Dictionary<string, int> count_dic = new Dictionary<string, int>();//統計用
 
+        string[] name = new string[5];
+        double[] id = new double[5];
+        string[] url = new string[5];
 
 
         public MainForm() {
@@ -45,7 +48,7 @@ namespace RakuHit {
             }
             if (showflag) {
                 //ライセンス画面をだす コントロール使えないように
-                this.button1.Enabled = false;
+                EnableFalse();
                 this.StartAmazonButton.Enabled = false;
                 LicenseForm lf = new LicenseForm(this);
                 lf.Show();
@@ -130,9 +133,11 @@ namespace RakuHit {
                         double average_like = 0;
                         double average_comment = 0;
                         int item_count = 0;
+                        Dictionary<double, SellUserData> sell_user_data = new Dictionary<double,SellUserData>();
+
                         foreach(var val in resp_format.items) {
 
-                            if (dp.AxisLabel == val.brand_name) {
+                            if (dp.AxisLabel == val.brand_name) {//クリックしたグラフの情報を取り出す
                                 if (val.price > max_price) {
                                     max_price = val.price;
                                 }
@@ -156,10 +161,20 @@ namespace RakuHit {
                                 if (val.comment_count < min_comment) {
                                     min_comment = val.comment_count;
                                 }
+                                //販売ユーザー情報
+                                if (!sell_user_data.ContainsKey(val.user_id)) {//新規なら
+                                    var dat = new SellUserData();
+                                    dat.user_id = val.user_id;
+                                    dat.screen_name = val.screen_name;
+                                    dat.pc_url = val.pc_url;
+                                    dat.item_count += 1;
+                                    sell_user_data.Add(val.user_id,dat);
+                                } else {
+                                    sell_user_data[val.user_id].item_count += 1;
+                                }
 
                                 item_count += 1;
                             }
-
                         }
                  
 
@@ -177,10 +192,34 @@ namespace RakuHit {
                         MaxCommentLabel.Text = ((int)max_comment).ToString();
                         MinCommentLabel.Text = ((int)min_comment).ToString();
                         AverageCommentLabel.Text = ((int)average_comment).ToString();
-
-
                         detail_query = dp.AxisLabel;
                         DetailQueryLabel.Text = detail_query;
+                        var orderdic = sell_user_data.OrderByDescending((x) => x.Value.item_count);
+                        name = new string[5];
+                        id = new double[5];
+                        url = new string[5];
+                        int count = 0;
+                        foreach(var val in orderdic) {
+                            if (count >= 5) break;
+                            name[count] = val.Value.screen_name;
+                            id[count] = val.Value.user_id;
+                            url[count] = val.Value.pc_url;
+                            Console.WriteLine(val.Value.user_id.ToString()+":"+val.Value.screen_name+":"+val.Value.item_count.ToString());
+                            count += 1;
+                        }
+                        UserLabel0.Text = name[0];
+                        
+                        if (!string.IsNullOrEmpty(UserLabel0.Text)) UserButton0.Enabled = true;
+                        UserLabel2.Text = name[1];
+                        if (!string.IsNullOrEmpty(UserLabel1.Text)) UserButton1.Enabled = true;
+                        UserLabel2.Text = name[2];
+                        if (!string.IsNullOrEmpty(UserLabel2.Text)) UserButton2.Enabled = true;
+                        UserLabel3.Text = name[3];
+                        if (!string.IsNullOrEmpty(UserLabel3.Text)) UserButton3.Enabled = true;
+                        UserLabel4.Text = name[4];
+                        if (!string.IsNullOrEmpty(UserLabel4.Text)) UserButton4.Enabled = true;
+
+
                         break;
                     default:
                         MessageBox.Show("先に検索を行ってください");
@@ -189,6 +228,10 @@ namespace RakuHit {
             }
 
         }
+
+
+
+
 
         private void StartAmazonButton_Click(object sender, EventArgs e) {
             string url = "https://www.amazon.co.jp/s?field-keywords=";
@@ -223,6 +266,8 @@ namespace RakuHit {
             progressBar1.Value = e.ProgressPercentage;
         }
 
+
+        #region ステータスバー表示関連
         private void chart_MouseHover(object sender, EventArgs e) {
             toolStripStatusLabel1.Text = "ダブルクリックで詳細を取得できます。";
         }
@@ -254,11 +299,18 @@ namespace RakuHit {
         private void numericUpDown2_Leave(object sender, EventArgs e) {
             toolStripStatusLabel1.Text = "";
         }
+        #endregion
+
         private void EnableFalse() {
             this.button1.Enabled = false;
             this.numericUpDown1.Enabled = false;
             this.numericUpDown2.Enabled = false;
             this.checkBox1.Enabled = false;
+            this.UserButton0.Enabled = false;
+            this.UserButton1.Enabled = false;
+            this.UserButton2.Enabled = false;
+            this.UserButton3.Enabled = false;
+            this.UserButton4.Enabled = false;
         }
         private void EnableTrue() {
             this.button1.Enabled = true;
@@ -273,8 +325,33 @@ namespace RakuHit {
         public const string ProductName = "RakuHit";
         public const string ProductKind = "rakuland";
         public void unlockLicense() {
-            this.button1.Enabled = true;
+            EnableTrue();
         }
         #endregion
+
+        private void UserButton0_Click(object sender, EventArgs e) {
+            string url = this.url[0];
+            System.Diagnostics.Process.Start(url);
+        }
+
+        private void UserButton1_Click(object sender, EventArgs e) {
+            string url = this.url[1];
+            System.Diagnostics.Process.Start(url);
+        }
+
+        private void UserButton2_Click(object sender, EventArgs e) {
+            string url = this.url[2];
+            System.Diagnostics.Process.Start(url);
+        }
+
+        private void UserButton3_Click(object sender, EventArgs e) {
+            string url = this.url[3];
+            System.Diagnostics.Process.Start(url);
+        }
+
+        private void UserButton4_Click(object sender, EventArgs e) {
+            string url = this.url[4];
+            System.Diagnostics.Process.Start(url);
+        }
     }
 }
