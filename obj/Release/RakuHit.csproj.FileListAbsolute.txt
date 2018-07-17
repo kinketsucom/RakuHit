@@ -8,3 +8,4 @@ C:\Users\sekib\Documents\Tasks\RakuHit\RakuHit\obj\Release\RakuHit.csproj.Genera
 C:\Users\sekib\Documents\Tasks\RakuHit\RakuHit\obj\Release\RakuHit.csproj.CoreCompileInputs.cache
 C:\Users\sekib\Documents\Tasks\RakuHit\RakuHit\obj\Release\RakuHit.exe
 C:\Users\sekib\Documents\Tasks\RakuHit\RakuHit\obj\Release\RakuHit.pdb
+C:\Users\sekib\Documents\Tasks\RakuHit\RakuHit\obj\Release\RakuHit.Forms.LicenseForm.resources

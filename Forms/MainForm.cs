@@ -32,9 +32,9 @@ namespace RakuHit {
         private void MainForm_Load(object sender, EventArgs e) {
             AdjustLayout();
             #region ライセンス関連
-            //初回起動(キーがなければ起動時刻+7日をレジストリに書き込み）
+            //初回起動(キーがなければ起動時刻+3日をレジストリに書き込み）
             string stringValue = (string)Microsoft.Win32.Registry.GetValue(MainForm.Registry_Path, "Expire", "");
-            string datestr = DateTime.Now.AddDays(7).ToString();
+            string datestr = DateTime.Now.AddDays(3).ToString();
             if (string.IsNullOrEmpty(stringValue)) Microsoft.Win32.Registry.SetValue(Registry_Path, "Expire", datestr);
             //ライセンスチェックを行う
             string LicenseKey = (string)Microsoft.Win32.Registry.GetValue(Registry_Path, Key_LicenseKey, "");
@@ -207,17 +207,36 @@ namespace RakuHit {
                             Console.WriteLine(val.Value.user_id.ToString()+":"+val.Value.screen_name+":"+val.Value.item_count.ToString());
                             count += 1;
                         }
+
                         UserLabel0.Text = name[0];
-                        
-                        if (!string.IsNullOrEmpty(UserLabel0.Text)) UserButton0.Enabled = true;
-                        UserLabel2.Text = name[1];
-                        if (!string.IsNullOrEmpty(UserLabel1.Text)) UserButton1.Enabled = true;
+                        if (!string.IsNullOrEmpty(UserLabel0.Text)) {
+                            UserButton0.Enabled = true;
+                        } else {
+                            UserButton0.Enabled = false;
+                        }
+                        UserLabel1.Text = name[1];
+                        if (!string.IsNullOrEmpty(UserLabel1.Text)) {
+                            UserButton1.Enabled = true;
+                        } else {
+                            UserButton1.Enabled = false;
+                        }
                         UserLabel2.Text = name[2];
-                        if (!string.IsNullOrEmpty(UserLabel2.Text)) UserButton2.Enabled = true;
+                        if (!string.IsNullOrEmpty(UserLabel2.Text)) {
+                            UserButton2.Enabled = true;
+                        } else {
+                            UserButton2.Enabled = false;
+                        }
                         UserLabel3.Text = name[3];
-                        if (!string.IsNullOrEmpty(UserLabel3.Text)) UserButton3.Enabled = true;
+                        if (!string.IsNullOrEmpty(UserLabel3.Text)) { UserButton3.Enabled = true;
+                        } else {
+                            UserButton3.Enabled = false;
+                        }
                         UserLabel4.Text = name[4];
-                        if (!string.IsNullOrEmpty(UserLabel4.Text)) UserButton4.Enabled = true;
+                        if (!string.IsNullOrEmpty(UserLabel4.Text)) {
+                            UserButton4.Enabled = true;
+                        } else {
+                            UserButton4.Enabled = false;
+                        }
 
 
                         break;
@@ -232,7 +251,7 @@ namespace RakuHit {
 
 
 
-
+        #region ボタン関連
         private void StartAmazonButton_Click(object sender, EventArgs e) {
             string url = "https://www.amazon.co.jp/s?field-keywords=";
             if (detail_query == "未指定") {
@@ -246,27 +265,27 @@ namespace RakuHit {
                 System.Diagnostics.Process.Start(url);
             }
         }
-
-        private void timer1_Tick(object sender, EventArgs e) {
-            //通知をバックグラウンドで取得する,新着通知があればメッセージを表示
-            if (backgroundWorker1.IsBusy) return;
-            else backgroundWorker1.RunWorkerAsync();
+        private void UserButton0_Click(object sender, EventArgs e) {
+            string url = this.url[0];
+            System.Diagnostics.Process.Start(url);
         }
-
-        private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e) {
-            backgroundWorker1.ReportProgress(api.progress_num);
-            //進捗を進める
-            if (progressBar1.Value >= progressBar1.Maximum) {
-                timer1.Enabled = false;
-            }
+        private void UserButton1_Click(object sender, EventArgs e) {
+            string url = this.url[1];
+            System.Diagnostics.Process.Start(url);
         }
-
-        private void backgroundWorker1_ProgressChanged(object sender, ProgressChangedEventArgs e) {
-            //プログレスバーの値を変更する
-            progressBar1.Value = e.ProgressPercentage;
+        private void UserButton2_Click(object sender, EventArgs e) {
+            string url = this.url[2];
+            System.Diagnostics.Process.Start(url);
         }
-
-
+        private void UserButton3_Click(object sender, EventArgs e) {
+            string url = this.url[3];
+            System.Diagnostics.Process.Start(url);
+        }
+        private void UserButton4_Click(object sender, EventArgs e) {
+            string url = this.url[4];
+            System.Diagnostics.Process.Start(url);
+        }
+        #endregion
         #region ステータスバー表示関連
         private void chart_MouseHover(object sender, EventArgs e) {
             toolStripStatusLabel1.Text = "ダブルクリックで詳細を取得できます。";
@@ -300,7 +319,6 @@ namespace RakuHit {
             toolStripStatusLabel1.Text = "";
         }
         #endregion
-
         private void EnableFalse() {
             this.button1.Enabled = false;
             this.numericUpDown1.Enabled = false;
@@ -318,7 +336,26 @@ namespace RakuHit {
             this.numericUpDown2.Enabled = true;
             this.checkBox1.Enabled = true;
         }
+        #region プログレスバー関連
+        private void timer1_Tick(object sender, EventArgs e) {
+            //通知をバックグラウンドで取得する,新着通知があればメッセージを表示
+            if (backgroundWorker1.IsBusy) return;
+            else backgroundWorker1.RunWorkerAsync();
+        }
 
+        private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e) {
+            backgroundWorker1.ReportProgress(api.progress_num);
+            //進捗を進める
+            if (progressBar1.Value >= progressBar1.Maximum) {
+                timer1.Enabled = false;
+            }
+        }
+
+        private void backgroundWorker1_ProgressChanged(object sender, ProgressChangedEventArgs e) {
+            //プログレスバーの値を変更する
+            progressBar1.Value = e.ProgressPercentage;
+        }
+        #endregion
         #region ライセンス関連
         public const string Key_LicenseKey = "LicenseKey";
         public const string Registry_Path = @"HKEY_CURRENT_USER\Software\RakuHit";
@@ -329,29 +366,6 @@ namespace RakuHit {
         }
         #endregion
 
-        private void UserButton0_Click(object sender, EventArgs e) {
-            string url = this.url[0];
-            System.Diagnostics.Process.Start(url);
-        }
 
-        private void UserButton1_Click(object sender, EventArgs e) {
-            string url = this.url[1];
-            System.Diagnostics.Process.Start(url);
-        }
-
-        private void UserButton2_Click(object sender, EventArgs e) {
-            string url = this.url[2];
-            System.Diagnostics.Process.Start(url);
-        }
-
-        private void UserButton3_Click(object sender, EventArgs e) {
-            string url = this.url[3];
-            System.Diagnostics.Process.Start(url);
-        }
-
-        private void UserButton4_Click(object sender, EventArgs e) {
-            string url = this.url[4];
-            System.Diagnostics.Process.Start(url);
-        }
     }
 }
