@@ -24,12 +24,12 @@
         /// </summary>
         private void InitializeComponent() {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea19 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend19 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series19 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea20 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend20 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series20 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea7 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend7 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series7 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea8 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend8 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series8 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.button1 = new System.Windows.Forms.Button();
             this.chart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
@@ -45,6 +45,17 @@
             this.label4 = new System.Windows.Forms.Label();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.DetailGroupBox = new System.Windows.Forms.GroupBox();
+            this.UserLabel4 = new System.Windows.Forms.Label();
+            this.UserButton4 = new System.Windows.Forms.Button();
+            this.UserLabel3 = new System.Windows.Forms.Label();
+            this.UserButton3 = new System.Windows.Forms.Button();
+            this.UserLabel2 = new System.Windows.Forms.Label();
+            this.UserButton2 = new System.Windows.Forms.Button();
+            this.UserLabel1 = new System.Windows.Forms.Label();
+            this.UserButton1 = new System.Windows.Forms.Button();
+            this.label16 = new System.Windows.Forms.Label();
+            this.UserLabel0 = new System.Windows.Forms.Label();
+            this.UserButton0 = new System.Windows.Forms.Button();
             this.AverageCommentLabel = new System.Windows.Forms.Label();
             this.MinCommentLabel = new System.Windows.Forms.Label();
             this.MaxCommentLabel = new System.Windows.Forms.Label();
@@ -72,17 +83,6 @@
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.UserButton0 = new System.Windows.Forms.Button();
-            this.UserLabel0 = new System.Windows.Forms.Label();
-            this.label16 = new System.Windows.Forms.Label();
-            this.UserLabel1 = new System.Windows.Forms.Label();
-            this.UserButton1 = new System.Windows.Forms.Button();
-            this.UserLabel2 = new System.Windows.Forms.Label();
-            this.UserButton2 = new System.Windows.Forms.Button();
-            this.UserLabel3 = new System.Windows.Forms.Label();
-            this.UserButton3 = new System.Windows.Forms.Button();
-            this.UserLabel4 = new System.Windows.Forms.Label();
-            this.UserButton4 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.chart)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.ConditionGroupBox.SuspendLayout();
@@ -94,6 +94,7 @@
             // 
             // button1
             // 
+            this.button1.Font = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.button1.Location = new System.Drawing.Point(0, 81);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(219, 34);
@@ -107,18 +108,18 @@
             this.chart.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            chartArea19.Name = "ChartArea1";
-            this.chart.ChartAreas.Add(chartArea19);
-            legend19.Name = "Legend1";
-            this.chart.Legends.Add(legend19);
+            chartArea7.Name = "ChartArea1";
+            this.chart.ChartAreas.Add(chartArea7);
+            legend7.Name = "Legend1";
+            this.chart.Legends.Add(legend7);
             this.chart.Location = new System.Drawing.Point(225, 0);
             this.chart.Name = "chart";
-            series19.ChartArea = "ChartArea1";
-            series19.Color = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            series19.Font = new System.Drawing.Font("メイリオ", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            series19.Legend = "Legend1";
-            series19.Name = "データ";
-            this.chart.Series.Add(series19);
+            series7.ChartArea = "ChartArea1";
+            series7.Color = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            series7.Font = new System.Drawing.Font("メイリオ", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            series7.Legend = "Legend1";
+            series7.Name = "データ";
+            this.chart.Series.Add(series7);
             this.chart.Size = new System.Drawing.Size(979, 557);
             this.chart.TabIndex = 1;
             this.chart.DoubleClick += new System.EventHandler(this.chart_DoubleClick);
@@ -136,14 +137,14 @@
             // 
             // numericUpDown1
             // 
-            this.numericUpDown1.Location = new System.Drawing.Point(9, 36);
+            this.numericUpDown1.Location = new System.Drawing.Point(9, 44);
             this.numericUpDown1.Maximum = new decimal(new int[] {
             49,
             0,
             0,
             0});
             this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(75, 22);
+            this.numericUpDown1.Size = new System.Drawing.Size(75, 30);
             this.numericUpDown1.TabIndex = 4;
             this.numericUpDown1.Value = new decimal(new int[] {
             1,
@@ -156,16 +157,16 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(6, 18);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(49, 15);
+            this.label1.Size = new System.Drawing.Size(55, 23);
             this.label1.TabIndex = 5;
             this.label1.Text = "全体の";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(6, 61);
+            this.label2.Location = new System.Drawing.Point(5, 81);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(148, 15);
+            this.label2.Size = new System.Drawing.Size(175, 23);
             this.label2.TabIndex = 6;
             this.label2.Text = "以下のデータは含めない";
             // 
@@ -174,9 +175,9 @@
             this.checkBox1.AutoSize = true;
             this.checkBox1.Checked = true;
             this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox1.Location = new System.Drawing.Point(6, 105);
+            this.checkBox1.Location = new System.Drawing.Point(10, 107);
             this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(116, 19);
+            this.checkBox1.Size = new System.Drawing.Size(122, 27);
             this.checkBox1.TabIndex = 8;
             this.checkBox1.Text = "未指定の除外";
             this.checkBox1.UseVisualStyleBackColor = true;
@@ -188,7 +189,7 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(90, 41);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(15, 15);
+            this.label3.Size = new System.Drawing.Size(25, 23);
             this.label3.TabIndex = 9;
             this.label3.Text = "%";
             // 
@@ -201,6 +202,7 @@
             this.ConditionGroupBox.Controls.Add(this.numericUpDown1);
             this.ConditionGroupBox.Controls.Add(this.checkBox1);
             this.ConditionGroupBox.Controls.Add(this.label2);
+            this.ConditionGroupBox.Font = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.ConditionGroupBox.Location = new System.Drawing.Point(0, 150);
             this.ConditionGroupBox.Name = "ConditionGroupBox";
             this.ConditionGroupBox.Size = new System.Drawing.Size(219, 276);
@@ -213,15 +215,15 @@
             this.label12.AutoSize = true;
             this.label12.Location = new System.Drawing.Point(6, 158);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(139, 15);
+            this.label12.Size = new System.Drawing.Size(160, 23);
             this.label12.TabIndex = 11;
             this.label12.Text = "取得アイテムの最大数";
             // 
             // numericUpDown2
             // 
-            this.numericUpDown2.Location = new System.Drawing.Point(9, 176);
+            this.numericUpDown2.Location = new System.Drawing.Point(9, 184);
             this.numericUpDown2.Maximum = new decimal(new int[] {
-            800,
+            10000,
             0,
             0,
             0});
@@ -231,7 +233,7 @@
             0,
             0});
             this.numericUpDown2.Name = "numericUpDown2";
-            this.numericUpDown2.Size = new System.Drawing.Size(75, 22);
+            this.numericUpDown2.Size = new System.Drawing.Size(75, 30);
             this.numericUpDown2.TabIndex = 10;
             this.numericUpDown2.Value = new decimal(new int[] {
             300,
@@ -251,24 +253,25 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(3, 35);
+            this.label4.Font = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.label4.Location = new System.Drawing.Point(-1, 27);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(67, 15);
+            this.label4.Size = new System.Drawing.Size(85, 23);
             this.label4.TabIndex = 12;
             this.label4.Text = "検索クエリ";
             // 
             // chart1
             // 
-            chartArea20.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea20);
-            legend20.Name = "Legend1";
-            this.chart1.Legends.Add(legend20);
+            chartArea8.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea8);
+            legend8.Name = "Legend1";
+            this.chart1.Legends.Add(legend8);
             this.chart1.Location = new System.Drawing.Point(1215, 583);
             this.chart1.Name = "chart1";
-            series20.ChartArea = "ChartArea1";
-            series20.Legend = "Legend1";
-            series20.Name = "Series1";
-            this.chart1.Series.Add(series20);
+            series8.ChartArea = "ChartArea1";
+            series8.Legend = "Legend1";
+            series8.Name = "Series1";
+            this.chart1.Series.Add(series8);
             this.chart1.Size = new System.Drawing.Size(8, 8);
             this.chart1.TabIndex = 13;
             this.chart1.Text = "chart1";
@@ -311,12 +314,133 @@
             this.DetailGroupBox.Controls.Add(this.MinPriceLabel);
             this.DetailGroupBox.Controls.Add(this.label6);
             this.DetailGroupBox.Controls.Add(this.label5);
+            this.DetailGroupBox.Font = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.DetailGroupBox.Location = new System.Drawing.Point(225, 563);
             this.DetailGroupBox.Name = "DetailGroupBox";
             this.DetailGroupBox.Size = new System.Drawing.Size(979, 216);
             this.DetailGroupBox.TabIndex = 14;
             this.DetailGroupBox.TabStop = false;
             this.DetailGroupBox.Text = "詳細情報";
+            // 
+            // UserLabel4
+            // 
+            this.UserLabel4.AutoEllipsis = true;
+            this.UserLabel4.Font = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.UserLabel4.Location = new System.Drawing.Point(750, 148);
+            this.UserLabel4.Name = "UserLabel4";
+            this.UserLabel4.Size = new System.Drawing.Size(180, 23);
+            this.UserLabel4.TabIndex = 44;
+            this.UserLabel4.Text = "ユーザー名";
+            // 
+            // UserButton4
+            // 
+            this.UserButton4.Enabled = false;
+            this.UserButton4.Font = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.UserButton4.Location = new System.Drawing.Point(754, 174);
+            this.UserButton4.Name = "UserButton4";
+            this.UserButton4.Size = new System.Drawing.Size(176, 33);
+            this.UserButton4.TabIndex = 43;
+            this.UserButton4.Text = "商品をみる";
+            this.UserButton4.UseVisualStyleBackColor = true;
+            this.UserButton4.Click += new System.EventHandler(this.UserButton4_Click);
+            // 
+            // UserLabel3
+            // 
+            this.UserLabel3.AutoEllipsis = true;
+            this.UserLabel3.Font = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.UserLabel3.Location = new System.Drawing.Point(564, 148);
+            this.UserLabel3.Name = "UserLabel3";
+            this.UserLabel3.Size = new System.Drawing.Size(180, 23);
+            this.UserLabel3.TabIndex = 42;
+            this.UserLabel3.Text = "ユーザー名";
+            // 
+            // UserButton3
+            // 
+            this.UserButton3.Enabled = false;
+            this.UserButton3.Font = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.UserButton3.Location = new System.Drawing.Point(568, 174);
+            this.UserButton3.Name = "UserButton3";
+            this.UserButton3.Size = new System.Drawing.Size(176, 33);
+            this.UserButton3.TabIndex = 41;
+            this.UserButton3.Text = "商品をみる";
+            this.UserButton3.UseVisualStyleBackColor = true;
+            this.UserButton3.Click += new System.EventHandler(this.UserButton3_Click);
+            // 
+            // UserLabel2
+            // 
+            this.UserLabel2.AutoEllipsis = true;
+            this.UserLabel2.Font = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.UserLabel2.Location = new System.Drawing.Point(378, 148);
+            this.UserLabel2.Name = "UserLabel2";
+            this.UserLabel2.Size = new System.Drawing.Size(180, 23);
+            this.UserLabel2.TabIndex = 40;
+            this.UserLabel2.Text = "ユーザー名";
+            // 
+            // UserButton2
+            // 
+            this.UserButton2.Enabled = false;
+            this.UserButton2.Font = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.UserButton2.Location = new System.Drawing.Point(382, 174);
+            this.UserButton2.Name = "UserButton2";
+            this.UserButton2.Size = new System.Drawing.Size(176, 33);
+            this.UserButton2.TabIndex = 39;
+            this.UserButton2.Text = "商品をみる";
+            this.UserButton2.UseVisualStyleBackColor = true;
+            this.UserButton2.Click += new System.EventHandler(this.UserButton2_Click);
+            // 
+            // UserLabel1
+            // 
+            this.UserLabel1.AutoEllipsis = true;
+            this.UserLabel1.Font = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.UserLabel1.Location = new System.Drawing.Point(192, 148);
+            this.UserLabel1.Name = "UserLabel1";
+            this.UserLabel1.Size = new System.Drawing.Size(180, 23);
+            this.UserLabel1.TabIndex = 38;
+            this.UserLabel1.Text = "ユーザー名";
+            // 
+            // UserButton1
+            // 
+            this.UserButton1.Enabled = false;
+            this.UserButton1.Font = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.UserButton1.Location = new System.Drawing.Point(196, 174);
+            this.UserButton1.Name = "UserButton1";
+            this.UserButton1.Size = new System.Drawing.Size(176, 33);
+            this.UserButton1.TabIndex = 37;
+            this.UserButton1.Text = "商品をみる";
+            this.UserButton1.UseVisualStyleBackColor = true;
+            this.UserButton1.Click += new System.EventHandler(this.UserButton1_Click);
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.label16.Location = new System.Drawing.Point(6, 125);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(295, 23);
+            this.label16.TabIndex = 36;
+            this.label16.Text = "売り上げを上げているユーザーランキング";
+            // 
+            // UserLabel0
+            // 
+            this.UserLabel0.AutoEllipsis = true;
+            this.UserLabel0.Font = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.UserLabel0.Location = new System.Drawing.Point(6, 148);
+            this.UserLabel0.Name = "UserLabel0";
+            this.UserLabel0.Size = new System.Drawing.Size(180, 23);
+            this.UserLabel0.TabIndex = 35;
+            this.UserLabel0.Text = "ユーザー名";
+            // 
+            // UserButton0
+            // 
+            this.UserButton0.Enabled = false;
+            this.UserButton0.Font = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.UserButton0.Location = new System.Drawing.Point(6, 174);
+            this.UserButton0.Name = "UserButton0";
+            this.UserButton0.Size = new System.Drawing.Size(180, 33);
+            this.UserButton0.TabIndex = 17;
+            this.UserButton0.Text = "商品をみる";
+            this.UserButton0.UseVisualStyleBackColor = true;
+            this.UserButton0.Click += new System.EventHandler(this.UserButton0_Click);
             // 
             // AverageCommentLabel
             // 
@@ -441,9 +565,10 @@
             // label10
             // 
             this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.label10.Location = new System.Drawing.Point(814, 28);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(147, 15);
+            this.label10.Size = new System.Drawing.Size(159, 23);
             this.label10.TabIndex = 21;
             this.label10.Text = "Amazon類似商品検索";
             // 
@@ -470,9 +595,10 @@
             // StartAmazonButton
             // 
             this.StartAmazonButton.BackColor = System.Drawing.Color.Orange;
-            this.StartAmazonButton.Location = new System.Drawing.Point(828, 46);
+            this.StartAmazonButton.Font = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.StartAmazonButton.Location = new System.Drawing.Point(828, 54);
             this.StartAmazonButton.Name = "StartAmazonButton";
-            this.StartAmazonButton.Size = new System.Drawing.Size(133, 23);
+            this.StartAmazonButton.Size = new System.Drawing.Size(133, 38);
             this.StartAmazonButton.TabIndex = 15;
             this.StartAmazonButton.Text = "Amazon";
             this.StartAmazonButton.UseVisualStyleBackColor = false;
@@ -574,126 +700,6 @@
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(151, 20);
             this.toolStripStatusLabel1.Text = "toolStripStatusLabel1";
-            // 
-            // UserButton0
-            // 
-            this.UserButton0.Enabled = false;
-            this.UserButton0.Font = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.UserButton0.Location = new System.Drawing.Point(26, 174);
-            this.UserButton0.Name = "UserButton0";
-            this.UserButton0.Size = new System.Drawing.Size(106, 33);
-            this.UserButton0.TabIndex = 17;
-            this.UserButton0.Text = "商品をみる";
-            this.UserButton0.UseVisualStyleBackColor = true;
-            this.UserButton0.Click += new System.EventHandler(this.UserButton0_Click);
-            // 
-            // UserLabel0
-            // 
-            this.UserLabel0.AutoEllipsis = true;
-            this.UserLabel0.Font = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.UserLabel0.Location = new System.Drawing.Point(26, 148);
-            this.UserLabel0.Name = "UserLabel0";
-            this.UserLabel0.Size = new System.Drawing.Size(106, 23);
-            this.UserLabel0.TabIndex = 35;
-            this.UserLabel0.Text = "ユーザー名";
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Font = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label16.Location = new System.Drawing.Point(6, 125);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(295, 23);
-            this.label16.TabIndex = 36;
-            this.label16.Text = "売り上げを上げているユーザーランキング";
-            // 
-            // UserLabel1
-            // 
-            this.UserLabel1.AutoEllipsis = true;
-            this.UserLabel1.Font = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.UserLabel1.Location = new System.Drawing.Point(142, 148);
-            this.UserLabel1.Name = "UserLabel1";
-            this.UserLabel1.Size = new System.Drawing.Size(106, 23);
-            this.UserLabel1.TabIndex = 38;
-            this.UserLabel1.Text = "ユーザー名";
-            // 
-            // UserButton1
-            // 
-            this.UserButton1.Enabled = false;
-            this.UserButton1.Font = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.UserButton1.Location = new System.Drawing.Point(142, 174);
-            this.UserButton1.Name = "UserButton1";
-            this.UserButton1.Size = new System.Drawing.Size(106, 33);
-            this.UserButton1.TabIndex = 37;
-            this.UserButton1.Text = "商品をみる";
-            this.UserButton1.UseVisualStyleBackColor = true;
-            this.UserButton1.Click += new System.EventHandler(this.UserButton1_Click);
-            // 
-            // UserLabel2
-            // 
-            this.UserLabel2.AutoEllipsis = true;
-            this.UserLabel2.Font = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.UserLabel2.Location = new System.Drawing.Point(254, 148);
-            this.UserLabel2.Name = "UserLabel2";
-            this.UserLabel2.Size = new System.Drawing.Size(106, 23);
-            this.UserLabel2.TabIndex = 40;
-            this.UserLabel2.Text = "ユーザー名";
-            // 
-            // UserButton2
-            // 
-            this.UserButton2.Enabled = false;
-            this.UserButton2.Font = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.UserButton2.Location = new System.Drawing.Point(254, 174);
-            this.UserButton2.Name = "UserButton2";
-            this.UserButton2.Size = new System.Drawing.Size(106, 33);
-            this.UserButton2.TabIndex = 39;
-            this.UserButton2.Text = "商品をみる";
-            this.UserButton2.UseVisualStyleBackColor = true;
-            this.UserButton2.Click += new System.EventHandler(this.UserButton2_Click);
-            // 
-            // UserLabel3
-            // 
-            this.UserLabel3.AutoEllipsis = true;
-            this.UserLabel3.Font = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.UserLabel3.Location = new System.Drawing.Point(366, 148);
-            this.UserLabel3.Name = "UserLabel3";
-            this.UserLabel3.Size = new System.Drawing.Size(106, 23);
-            this.UserLabel3.TabIndex = 42;
-            this.UserLabel3.Text = "ユーザー名";
-            // 
-            // UserButton3
-            // 
-            this.UserButton3.Enabled = false;
-            this.UserButton3.Font = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.UserButton3.Location = new System.Drawing.Point(366, 174);
-            this.UserButton3.Name = "UserButton3";
-            this.UserButton3.Size = new System.Drawing.Size(106, 33);
-            this.UserButton3.TabIndex = 41;
-            this.UserButton3.Text = "商品をみる";
-            this.UserButton3.UseVisualStyleBackColor = true;
-            this.UserButton3.Click += new System.EventHandler(this.UserButton3_Click);
-            // 
-            // UserLabel4
-            // 
-            this.UserLabel4.AutoEllipsis = true;
-            this.UserLabel4.Font = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.UserLabel4.Location = new System.Drawing.Point(478, 148);
-            this.UserLabel4.Name = "UserLabel4";
-            this.UserLabel4.Size = new System.Drawing.Size(106, 23);
-            this.UserLabel4.TabIndex = 44;
-            this.UserLabel4.Text = "ユーザー名";
-            // 
-            // UserButton4
-            // 
-            this.UserButton4.Enabled = false;
-            this.UserButton4.Font = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.UserButton4.Location = new System.Drawing.Point(478, 174);
-            this.UserButton4.Name = "UserButton4";
-            this.UserButton4.Size = new System.Drawing.Size(106, 33);
-            this.UserButton4.TabIndex = 43;
-            this.UserButton4.Text = "商品をみる";
-            this.UserButton4.UseVisualStyleBackColor = true;
-            this.UserButton4.Click += new System.EventHandler(this.UserButton4_Click);
             // 
             // MainForm
             // 

@@ -9,3 +9,4 @@ C:\Users\sekib\Documents\Tasks\RakuHit\RakuHit\obj\Debug\RakuHit.csproj.CoreComp
 C:\Users\sekib\Documents\Tasks\RakuHit\RakuHit\obj\Debug\RakuHit.exe
 C:\Users\sekib\Documents\Tasks\RakuHit\RakuHit\obj\Debug\RakuHit.pdb
 C:\Users\sekib\Documents\Tasks\RakuHit\RakuHit\obj\Debug\RakuHit.Forms.LicenseForm.resources
+C:\Users\sekib\Documents\Tasks\RakuHit\RakuHit\obj\Debug\RakuHit.Forms.DataForm.resources

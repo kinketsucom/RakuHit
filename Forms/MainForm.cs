@@ -19,6 +19,7 @@ namespace RakuHit {
         string detail_query = "";
         Dictionary<string, string> param = new Dictionary<string, string>();//レスポンス用
         ResponseFormat resp_format = new ResponseFormat();
+
         Dictionary<string, int> count_dic = new Dictionary<string, int>();//統計用
 
         string[] name = new string[5];
@@ -134,9 +135,9 @@ namespace RakuHit {
                         double average_comment = 0;
                         int item_count = 0;
                         Dictionary<double, SellUserData> sell_user_data = new Dictionary<double,SellUserData>();
-
-                        foreach(var val in resp_format.items) {
-
+                        List<Items> selected_items = new List<Items>();
+                        foreach (var val in resp_format.items) {
+                            if (val.item_detail.Contains("ASIN")) Console.WriteLine("ASINあったよ" + val.item_name);
                             if (dp.AxisLabel == val.brand_name) {//クリックしたグラフの情報を取り出す
                                 if (val.price > max_price) {
                                     max_price = val.price;
@@ -172,7 +173,7 @@ namespace RakuHit {
                                 } else {
                                     sell_user_data[val.user_id].item_count += 1;
                                 }
-
+                                selected_items.Add(val);
                                 item_count += 1;
                             }
                         }
@@ -204,7 +205,7 @@ namespace RakuHit {
                             name[count] = val.Value.screen_name;
                             id[count] = val.Value.user_id;
                             url[count] = val.Value.pc_url;
-                            Console.WriteLine(val.Value.user_id.ToString()+":"+val.Value.screen_name+":"+val.Value.item_count.ToString());
+                            //Console.WriteLine(val.Value.user_id.ToString()+":"+val.Value.screen_name+":"+val.Value.item_count.ToString());
                             count += 1;
                         }
 
@@ -238,6 +239,8 @@ namespace RakuHit {
                             UserButton4.Enabled = false;
                         }
 
+                        DataForm data_form = new DataForm(selected_items,detail_query);
+                        data_form.Show();
 
                         break;
                     default:
@@ -254,15 +257,21 @@ namespace RakuHit {
         #region ボタン関連
         private void StartAmazonButton_Click(object sender, EventArgs e) {
             string url = "https://www.amazon.co.jp/s?field-keywords=";
+            string url_yahoo = "https://auctions.yahoo.co.jp/search/search?";
             if (detail_query == "未指定") {
                 System.Diagnostics.Process.Start(url);
+                System.Diagnostics.Process.Start(url_yahoo);
             } else {
                 url += detail_query;
+                url_yahoo += "p="+ detail_query;
                 if (!string.IsNullOrEmpty(textBox1.Text)) {
                     url += " " + textBox1.Text;
+                    url_yahoo += "+"+textBox1.Text;
                 }
                 url += "&tag=2018result-22";
                 System.Diagnostics.Process.Start(url);
+                System.Diagnostics.Process.Start(url_yahoo);
+
             }
         }
         private void UserButton0_Click(object sender, EventArgs e) {
@@ -364,8 +373,7 @@ namespace RakuHit {
         public void unlockLicense() {
             EnableTrue();
         }
+
         #endregion
-
-
     }
 }
